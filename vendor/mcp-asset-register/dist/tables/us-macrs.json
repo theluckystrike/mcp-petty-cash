@@ -1,0 +1,47 @@
+{
+  "header": {
+    "scheme": "us",
+    "table": "us-macrs",
+    "authority": "Internal Revenue Service",
+    "instrument": "MACRS General Depreciation System, 200 percent declining balance switching to straight line, half-year convention. Percentage tables as published in IRS Publication 946, Appendix A, Table A-1",
+    "source_url": "https://www.irs.gov/publications/p946",
+    "effective_date": "1987-01-01",
+    "retrieved_date": "2026-09-05",
+    "currency": "USD",
+    "convention": "us-half-year",
+    "coverage": "The 3, 5 and 7 year GDS property classes under the HALF-YEAR convention only. NOT bundled: the mid-quarter convention tables, the mid-month convention and the 27.5 and 39 year real property classes, the 10, 15 and 20 year classes, the Alternative Depreciation System, section 179 expensing and bonus depreciation. Those could not be stated with confidence here, so no row claims them.",
+    "note": "MACRS ignores salvage value: the tables recover the full cost. A residual passed to this server for a US asset is reported back as ignored rather than silently applied. The mid-quarter convention is mandatory when more than 40 percent of the year's additions are placed in service in the last quarter; this server cannot see the rest of the year's additions, so it never chooses that convention for the caller."
+  },
+  "rates": [
+    {
+      "code": "3-year",
+      "name_en": "3-year property",
+      "life_years": 3,
+      "method": "declining-balance",
+      "declining_pct": 200,
+      "convention": "half-year",
+      "percentages": [33.33, 44.45, 14.81, 7.41],
+      "note": "Tractor units for over-the-road use, certain special tools, some racehorses."
+    },
+    {
+      "code": "5-year",
+      "name_en": "5-year property",
+      "life_years": 5,
+      "method": "declining-balance",
+      "declining_pct": 200,
+      "convention": "half-year",
+      "percentages": [20.0, 32.0, 19.2, 11.52, 11.52, 5.76],
+      "note": "Computers and peripherals, office machinery, cars and light trucks, some research equipment."
+    },
+    {
+      "code": "7-year",
+      "name_en": "7-year property",
+      "life_years": 7,
+      "method": "declining-balance",
+      "declining_pct": 200,
+      "convention": "half-year",
+      "percentages": [14.29, 24.49, 17.49, 12.49, 8.93, 8.92, 8.93, 4.46],
+      "note": "Office furniture and fixtures, agricultural machinery, and any property with no class life assigned."
+    }
+  ]
+}

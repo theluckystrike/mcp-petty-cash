@@ -1,0 +1,55 @@
+{
+  "name": "@theluckystrike/mcp-asset-register",
+  "version": "0.20.0",
+  "description": "Fixed assets and depreciation on bundled Polish KST, HMRC and IRS MACRS tables.",
+  "type": "module",
+  "bin": {
+    "mcp-asset-register": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./lib": {
+      "types": "./dist/lib.d.ts",
+      "default": "./dist/lib.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "server.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "depreciation",
+    "fixed-assets",
+    "amortyzacja",
+    "kst",
+    "macrs",
+    "capital-allowances",
+    "accounting"
+  ],
+  "license": "MIT",
+  "author": "theluckystrike",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/mcp-servers",
+    "directory": "servers/asset-register"
+  },
+  "homepage": "https://github.com/theluckystrike/mcp-servers/tree/main/servers/asset-register",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@theluckystrike/mcp-license": "file:../mcp-license",
+    "zod": "^3.25.0",
+    "@theluckystrike/mcp-timezone": "file:../mcp-timezone"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "header": {
+    "scheme": "uk",
+    "table": "uk-capital-allowances",
+    "authority": "HM Revenue and Customs",
+    "instrument": "Capital Allowances Act 2001, plant and machinery writing down allowances; the pool rates and the annual investment allowance as published in HMRC's Capital Allowances Manual and the CA guidance on GOV.UK",
+    "source_url": "https://www.gov.uk/capital-allowances/what-you-can-claim-on",
+    "effective_date": "2019-01-01",
+    "retrieved_date": "2026-09-05",
+    "currency": "GBP",
+    "convention": "uk-full-period",
+    "coverage": "The two writing-down pools and the annual investment allowance only. NOT bundled: the first-year allowance and full-expensing rules, the structures and buildings allowance, the small pools allowance, the car CO2 emission thresholds that decide which pool a car enters, and every balancing-charge computation. Those are date-sensitive and could not be stated with confidence in this build, so no row claims them.",
+    "note": "A UK writing down allowance is a reducing-balance allowance on a POOL of expenditure, not an asset-by-asset depreciation charge. This server applies the pool rate to a single asset so a figure can be produced per asset; the tax computation is still made on the pool. The rate is a maximum: a business may claim less."
+  },
+  "rates": [
+    {
+      "code": "main",
+      "name_en": "Main rate pool",
+      "rate_pct": 18,
+      "method": "declining-balance",
+      "note": "Most plant and machinery: computers, office equipment, machinery, vans, and cars in the main pool."
+    },
+    {
+      "code": "special",
+      "name_en": "Special rate pool",
+      "rate_pct": 6,
+      "method": "declining-balance",
+      "note": "Integral features of a building, long-life assets, thermal insulation, solar panels, and higher-emission cars. Which cars fall here depends on CO2 thresholds that are not bundled."
+    },
+    {
+      "code": "aia",
+      "name_en": "Annual investment allowance",
+      "rate_pct": 100,
+      "method": "straight-line",
+      "aia_limit_gbp": 1000000,
+      "note": "AIA is a 100 percent first-year deduction on qualifying plant and machinery, capped at GBP 1,000,000 of expenditure per 12-month period and shared across a group. Cars never qualify. Expenditure covered by AIA does not then enter a pool. This row exists so an asset can be marked as fully relieved in year one; it is not a depreciation rate."
+    }
+  ]
+}
