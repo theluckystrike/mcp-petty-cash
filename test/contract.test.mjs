@@ -1,7 +1,13 @@
+// Mirror note: RESULT.md is the monorepo's build log for this server and is not
+// published to a mirror, so it is dropped from the required-file list below. Every
+// other file in that list is still checked.
 // Mirror note: tests that need a signed Pro key are skipped here. The signing key
 // lives only in the monorepo (keys/license-private.pem); run them there.
 // Mirror note: tests that run a script from the monorepo's scripts/ directory are
 // skipped here. That directory is not part of a server folder; run them in the monorepo.
+// Mirror note: tests that read another server's source out of the monorepo are
+// skipped here. A mirror holds one server and vendors a sibling's dist, never its
+// src, so there is nothing to read; run them in the monorepo.
 // Contract suite for petty-cash. Generated shape, mechanical assertions only.
 //
 // Asserts the invariants of servers/petty-cash/SPEC.md that a test can check without
@@ -230,7 +236,7 @@ test.skip("no balance is stored: the float record holds the imprest, the top-ups
   ]);
 });
 
-test("the account ids this server journals to are the cash book's own", async () => {
+test.skip("the account ids this server journals to are the cash book's own", async () => {
   // If servers/cash-book renames its cash account or its expense prefix, a journal
   // produced here would post to an account its ledger does not have. They are IMPORTED
   // rather than retyped, so this test asserts the import, not a copy.
@@ -263,7 +269,7 @@ test("src holds no network call and no stdout write", async () => {
 
 test("the required files are all present", () => {
   for (const f of [
-    "package.json", "tsconfig.json", "README.md", "LICENSE", "SPEC.md", "RESULT.md",
+    "package.json", "tsconfig.json", "README.md", "LICENSE", "SPEC.md",
     "server.json", "server.mcpb.json", "server.variant.json", "server.imprest.json",
     "remotes.json", "smithery.yaml", "glama.json", "llms-install.md", "Dockerfile",
     "src/index.ts", "src/lib.ts", "src/float.ts", "src/store.ts", "src/accounts.ts", "src/version.ts",

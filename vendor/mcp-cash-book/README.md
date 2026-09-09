@@ -2,6 +2,8 @@
 
 One double-entry ledger over the books you already keep. It reads your invoices, credit notes, purchase orders, deposits, expenses, bank import and fixed asset register, and derives a debit and a credit for every movement in a period: revenue and VAT output from the invoices, receivables and the payments that clear them, deposits held as the liability they are, expenses by category with the VAT taken out of the gross, fixed assets and their monthly depreciation. It proves the trial balance sums to zero to the minor unit, and when it does not it names the document whose own figures do not add up. It writes nothing back into any of those books, and there is no way to type an entry into it: every line carries the server, the document id and the date it came from, so any figure can be walked back to the page it was printed on.
 
+npm publish for `@theluckystrike/mcp-cash-book` is pending, so `npx -y @theluckystrike/mcp-cash-book` returns 404 today. Until then, the `.mcpb` one-click bundle or a clone+build is the working path.
+
 ## Install
 
 Claude Desktop, `~/Library/Application Support/Claude/claude_desktop_config.json` (Windows: `%APPDATA%\Claude\claude_desktop_config.json`):

@@ -158,7 +158,7 @@ server.registerTool("float_open", {
 
 server.registerTool("topup_record", {
   title: "Record cash put into the float",
-  description: "Record cash put into the tin: the amount in whole minor units, the date and where it came from. It reimburses every voucher up to that date, which is what a replenishment cheque does. Free.",
+  description: "Record cash put into the tin, in whole MINOR units, with the date and source, and return the new balance against the imprest. It also reimburses every voucher up to that date, as a replenishment does.",
   inputSchema: {
     amount_minor: z.number().int().min(1).max(MAX_MINOR).describe("Cash added, in whole minor units"),
     date: str("date", 10).describe("The date the cash went in, YYYY-MM-DD"),
@@ -281,7 +281,7 @@ server.registerTool("voucher_add", {
 
 server.registerTool("voucher_delete", {
   title: "Delete a voucher",
-  description: "Delete a voucher that was entered wrongly, by its VOU number. A voucher already covered by a reconciliation is refused: the cash it took out was counted, so removing it would make a past count wrong. Free.",
+  description: "Delete a voucher entered wrongly, by its VOU number. One already covered by a reconciliation is refused, naming the count it would falsify: record a correcting voucher instead. Free.",
   inputSchema: {
     voucher: str("voucher", MAX_NAME).describe("The voucher id, e.g. VOU-2026-0003"),
   },
@@ -317,7 +317,7 @@ server.registerTool("voucher_delete", {
 
 server.registerTool("reconcile", {
   title: "Count the tin and reconcile",
-  description: "Count the cash and reconcile: the expected balance, the difference to the minor unit, and every voucher since the last count, which this marks reconciled. Records the count. Free and unlimited.",
+  description: "Count the tin: give the cash counted in whole MINOR units and the date, and get the expected balance, the difference, and every voucher since the last count, which this marks reconciled. Free.",
   inputSchema: {
     counted_minor: z.number().int().min(0).max(MAX_MINOR).describe("The cash actually counted, in whole minor units"),
     date: str("date", 10).describe("The date it was counted, YYYY-MM-DD"),
@@ -435,7 +435,7 @@ server.registerTool("replenish_request", {
 
 server.registerTool("float_report", {
   title: "Report the state of the float",
-  description: "Report every float: the balance against its imprest, what is unreconciled, the last count, and the history of what the counts found over or short, per float and in total. Pro.",
+  description: "Report each float: balance against imprest, what it takes to restore it, unreconciled vouchers with their total, the last count, and the history of what counts found over or short. Pro.",
   inputSchema: {
     float: floatArg,
     limit: z.number().int().min(1).max(MAX_ROWS).optional().describe(`Maximum unreconciled vouchers listed per float, default and ceiling ${MAX_ROWS}`),

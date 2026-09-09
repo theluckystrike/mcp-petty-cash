@@ -200,7 +200,7 @@ const currencyArg = z.string().regex(/^[A-Za-z]{3}$/, "currency must be a 3-lett
     .describe("Needed when the period holds documents in more than one currency. Currencies are never added together");
 server.registerTool("ledger_build", {
     title: "Build the ledger for a period",
-    description: "Derive the double-entry ledger for one period in one currency from the invoice, credit note, deposit, expense, bank and asset stores. Every line names its source server, source id and date. Nothing is written back.",
+    description: "Derive the double-entry ledger for one period in ONE currency from the invoice, credit note, deposit, expense, bank and asset stores, and register it. Nothing is written back. Free: 3 periods a month.",
     inputSchema: { from: fromArg, to: toArg, currency: currencyArg },
 }, async (a) => {
     try {
@@ -381,7 +381,7 @@ server.registerTool("ledger_lines", {
 });
 server.registerTool("month_close", {
     title: "Close a month",
-    description: "List what a month leaves unposted or inconsistent: invoices with no VAT rate, bank debits with no expense, deposits applied to unknown invoices. Then close it with a trial balance snapshot. Pro.",
+    description: "List what a month leaves unposted or inconsistent, with its trial balance, then record the close as a snapshot; a later call names any drift. dry_run reports without writing. Pro.",
     inputSchema: {
         month: str("month", 7).describe("The month to close, YYYY-MM"),
         currency: currencyArg,
@@ -465,7 +465,7 @@ server.registerTool("ledger_export_csv", {
 });
 server.registerTool("ledger_report", {
     title: "Report movement and balance per account",
-    description: "Report every account for a period with its debits, its credits, its movement and its closing balance, plus the purchase commitments held as a memo and the exceptions the period carries. Pro.",
+    description: "Report a built period account by account: debits, credits, movement and closing balance, plus purchase commitments held as memos and the period's exceptions. Pro; ledger_lines gives the lines free.",
     inputSchema: { from: fromArg, to: toArg, currency: currencyArg },
 }, async (a) => {
     try {

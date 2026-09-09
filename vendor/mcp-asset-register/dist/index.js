@@ -265,7 +265,7 @@ server.registerTool("asset_list", {
 });
 server.registerTool("asset_schedule", {
     title: "Build a depreciation schedule",
-    description: "Build the depreciation schedule for a stored asset, or price one not yet in the register, per year or per month, to zero or residual, with the table convention applied and the periods summing exactly to the base. Free.",
+    description: "Build the depreciation schedule for a stored asset, or price one not in the register, per year or per month, to residual or zero, with the table's rate, life and convention. Periods sum exactly to the base.",
     inputSchema: {
         asset: str("asset", MAX_NAME).optional().describe("Asset id such as ASSET-2026-0001, or an exact or partial name. Omit and pass the fields below to price an asset that is not in the register"),
         scheme: schemeArg.optional().describe("Scheme, when pricing an asset that is not in the register"),
@@ -462,7 +462,7 @@ server.registerTool("asset_journal", {
 });
 server.registerTool("asset_dispose", {
     title: "Dispose of an asset",
-    description: "Record the sale, scrapping or write-off of an asset on a date for a proceeds amount, and return the gain or loss against net book value at that date. Free.",
+    description: "Record that an asset left the business on a date and return the gain or loss against net book value. proceeds_minor is in MINOR units. Depreciation stops here, and a second disposal is refused.",
     inputSchema: {
         asset: str("asset", MAX_NAME).min(1, "asset is required").describe("Asset id such as ASSET-2026-0001, or an exact or partial name"),
         date: str("date", 10).describe("ISO date YYYY-MM-DD the asset left the business. It cannot be before the in-service date"),
@@ -573,7 +573,7 @@ server.registerTool("asset_delete", {
 });
 server.registerTool("asset_report", {
     title: "Report the register",
-    description: "Report net book value by category and currency at a date, the year's depreciation charge, and every disposal in the year with its gain or loss. Pro.",
+    description: "For one year: net book value by category, scheme and currency at a date, the year's depreciation charge per currency, and every disposal with its gain or loss. Pro; asset_list and asset_schedule are free.",
     inputSchema: {
         year: z.number().int().optional().describe("Calendar year to report, e.g. 2026. Default the year of as_of, else this year"),
         as_of: str("as_of", 10).optional().describe("Value the register at this month or date, YYYY-MM or YYYY-MM-DD. Default the last day of the year"),

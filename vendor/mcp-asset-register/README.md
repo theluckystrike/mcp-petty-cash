@@ -6,6 +6,14 @@ Built by [theluckystrike](https://github.com/theluckystrike).
 
 ## Install
 
+
+**One-click (.mcpb):** download `asset-register.mcpb` from the latest release and double-click it in Claude Desktop:
+https://github.com/theluckystrike/mcp-servers/releases/latest
+
+**Hosted, no install:** point a URL-based client at `https://mcp.zovo.one/mcp/asset-register`. `GET https://mcp.zovo.one/mcp/connect` mints a token and prints a ready URL.
+
+npm publish for `@theluckystrike/mcp-asset-register` is pending, so the `npx` line below returns 404 today.
+
 Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json

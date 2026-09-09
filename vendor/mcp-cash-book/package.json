@@ -1,6 +1,6 @@
 {
   "name": "@theluckystrike/mcp-cash-book",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "description": "One double-entry ledger derived from your invoices, bank, expenses, deposits and assets.",
   "type": "module",
   "bin": {

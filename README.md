@@ -13,6 +13,8 @@ A petty cash float, kept the way the paperwork keeps it. Open a tin with an impr
 
 Built by theluckystrike.
 
+npm publish for `@theluckystrike/mcp-petty-cash` is pending, so `npx -y @theluckystrike/mcp-petty-cash` returns 404 today. Until then, the `.mcpb` one-click bundle or a clone+build is the working path.
+
 ## Install
 
 ### Claude Desktop

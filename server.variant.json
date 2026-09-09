@@ -2,19 +2,18 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.theluckystrike/cash-float",
   "description": "Run a cash float: record what was paid out, count the tin, and raise the top-up.",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "repository": {
     "url": "https://github.com/theluckystrike/mcp-servers",
     "source": "github",
     "subfolder": "servers/petty-cash"
   },
-  "websiteUrl": "https://mcp.zovo.one/buy/petty-cash",
+  "websiteUrl": "https://mcp.zovo.one/s/petty-cash",
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/theluckystrike/mcp-servers/releases/download/v0.20.0/petty-cash.mcpb",
-      "version": "0.20.0",
-      "fileSha256": "527a48b7ebdba96e7c6b23bc4436b5d3005dcb52f7750d77365e8f0272805e66",
+      "identifier": "https://github.com/theluckystrike/mcp-servers/releases/download/v0.21.0/petty-cash.mcpb",
+      "version": "0.21.0",
       "transport": {
         "type": "stdio"
       },
@@ -25,7 +24,8 @@
           "isRequired": false,
           "isSecret": true
         }
-      ]
+      ],
+      "fileSha256": "ff6d1c394c2c0ec28f990905db128204190d45b8fa9d620d54a6d0f00a8cfc85"
     }
   ]
 }
