@@ -1,13 +1,45 @@
 # mcp-petty-cash
 
+<!-- mirror-seo:start -->
+
+**MCP server for a petty cash float on the imprest system.** A petty cash float on the imprest system, reconciled to the minor unit.
+
+Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
+
+## Install
+
+**Hosted, nothing to install.** Point an MCP client at `https://mcp.zovo.one/mcp/petty-cash` over streamable-http and send `Authorization: Bearer <token>`, where the token is a Pro key or a free anonymous one from <https://mcp.zovo.one/mcp/token>.
+
+**Claude Desktop, one click.** Download `petty-cash.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it.
+
+**From source.** The mirror is self-contained: every `@theluckystrike/*` dependency is vendored, so a fresh clone builds with no extra setup.
+
+```sh
+git clone https://github.com/theluckystrike/mcp-petty-cash.git
+cd mcp-petty-cash
+npm install && npm run build
+```
+
+Then point your client at the built entry point:
+
+```json
+{
+  "mcpServers": {
+    "petty-cash": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-petty-cash/dist/index.js"]
+    }
+  }
+}
+```
+
+> `@theluckystrike/mcp-petty-cash` is **not published on npm yet**, so an `npx -y @theluckystrike/mcp-petty-cash` command will fail. The three paths above are the working ones and each is exercised by CI.
+
 ![petty-cash demo](https://raw.githubusercontent.com/theluckystrike/mcp-servers/main/assets/demo-petty-cash.gif)
-
-**One-click install:** download `petty-cash.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it in Claude Desktop.
-
-**Hosted endpoint (no install):** `https://mcp.zovo.one/mcp/petty-cash` (streamable-http; send `Authorization: Bearer <Pro key or anonymous token from https://mcp.zovo.one/mcp/token>`).
 
 Read-only mirror of [mcp-servers/servers/petty-cash](https://github.com/theluckystrike/mcp-servers/tree/main/servers/petty-cash). See [MIRROR.md](MIRROR.md).
 
+<!-- mirror-seo:end -->
 
 A petty cash float, kept the way the paperwork keeps it. Open a tin with an imprest amount and a custodian, record a voucher for every receipt that comes out of it, count the cash whenever you like, and get the difference to the minor unit along with the list of vouchers that count covers. When the tin runs low it works out the replenishment: what the cheque has to be to put the float back to its imprest, which vouchers it reimburses, the totals per category as an `expense_add`-ready payload, and the double entry in the cash book's own account names. Every amount is an integer number of minor units, no balance is ever stored, and nothing is posted anywhere: the payload is handed back for whoever owns the books.
 
