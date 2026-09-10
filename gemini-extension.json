@@ -1,0 +1,22 @@
+{
+  "name": "mcp-petty-cash",
+  "version": "0.21.0",
+  "description": "MCP server for a petty cash book and voucher ledger: a cash float on the imprest system. A petty cash float on the imprest system, reconciled to the minor unit.",
+  "settings": [
+    {
+      "name": "mcp.zovo.one token",
+      "description": "A free anonymous token from https://mcp.zovo.one/mcp/token, or your Pro key. One token is one data space, and it is refreshed for another 30 days on every write.",
+      "envVar": "ZOVO_MCP_TOKEN",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "petty-cash": {
+      "httpUrl": "https://mcp.zovo.one/mcp/petty-cash",
+      "headers": {
+        "Authorization": "Bearer ${ZOVO_MCP_TOKEN}"
+      },
+      "description": "A petty cash float on the imprest system, reconciled to the minor unit."
+    }
+  }
+}
