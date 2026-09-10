@@ -2,7 +2,7 @@
 
 <!-- mirror-seo:start -->
 
-**MCP server for a petty cash float on the imprest system.** A petty cash float on the imprest system, reconciled to the minor unit.
+**MCP server for a petty cash book and voucher ledger: a cash float on the imprest system.** A petty cash float on the imprest system, reconciled to the minor unit.
 
 Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
 
