@@ -13,6 +13,8 @@ Built on `@theluckystrike/mcp-invoice/lib` for the money, currency and store cod
 `@theluckystrike/mcp-billing-docs/lib` for the A4 page, so a deposit statement looks like the credit
 note and the invoice next to it and agrees with them to the minor unit.
 
+**In the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theluckystrike%2Fdeposits/versions/latest)** (`io.github.theluckystrike/deposits`).
+
 ![deposits demo](../../assets/demo-deposits.gif)
 
 npm publish for `@theluckystrike/mcp-deposits` is pending, so `npx -y @theluckystrike/mcp-deposits` returns 404 today. Until then, the `.mcpb` one-click bundle or a clone+build is the working path.

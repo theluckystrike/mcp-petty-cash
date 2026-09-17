@@ -519,7 +519,7 @@ server.registerTool("deposit_delete", {
 });
 server.registerTool("deposit_balance", {
     title: "What is held for a client",
-    description: "Answer \"how much of theirs am I holding?\" for one client or for everyone: received, applied to invoices, refunded and still held, one row per currency, never added across currencies.",
+    description: "Answer \"how much of theirs am I holding?\" for one client or everyone: received, applied to invoices, refunded and still held, one row per currency, never added across them. Reads only; deposit_list shows each deposit.",
     inputSchema: {
         client: z.string().optional().describe("Client id, exact name or a name containing this text. Leave out for every client"),
         as_of: z.string().optional().describe("YYYY-MM-DD, count only deposits received on or before this day"),

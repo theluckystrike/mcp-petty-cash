@@ -341,7 +341,7 @@ server.registerTool("trial_balance", {
 });
 server.registerTool("ledger_lines", {
     title: "List ledger lines",
-    description: "List the ledger lines for a period, filtered by account, source server or document id, and date. Each line carries its debit, credit and bank_ref, the same field the Pro CSV lays out as a column. Free and unlimited.",
+    description: "List the ledger lines for a period, filtered by account, source server, source_id or date; each carries its debit, credit and bank_ref, with the totals of the rows returned. Filtered totals do not balance. Free.",
     inputSchema: {
         from: fromArg, to: toArg, currency: currencyArg,
         account: str("account", MAX_NAME).optional().describe('Only this account, e.g. cash, receivables, vat_output, or a category prefix such as "expenses"'),
@@ -381,7 +381,7 @@ server.registerTool("ledger_lines", {
 });
 server.registerTool("month_close", {
     title: "Close a month",
-    description: "List what a month leaves unposted or inconsistent, with its trial balance, then record the close as a snapshot; a later call names any drift. dry_run reports without writing. Pro.",
+    description: "List what a month leaves unposted or unbalanced, with its trial balance and bank reconciliation, then store the close as a snapshot; a later call names any drift against it. dry_run writes nothing. Pro.",
     inputSchema: {
         month: str("month", 7).describe("The month to close, YYYY-MM"),
         currency: currencyArg,

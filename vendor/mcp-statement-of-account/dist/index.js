@@ -446,7 +446,7 @@ function bankLines() {
 }
 server.registerTool("dunning_text", {
     title: "Write a dunning letter",
-    description: "Write a payment chaser at level 1 friendly, 2 firm or 3 final demand: every OVERDUE invoice with its age, the total and your bank details. Nothing overdue is refused. No interest is stated. Level 3 is Pro.",
+    description: "Write a payment chaser at level 1 friendly, 2 firm or 3 final demand: every OVERDUE invoice with its age, the total and your bank details. Refused if nothing is overdue. No interest is stated. Level 3 is Pro.",
     inputSchema: {
         client: clientArg,
         level: z.number().int().min(1, "level is 1, 2 or 3").max(3, "level is 1, 2 or 3")

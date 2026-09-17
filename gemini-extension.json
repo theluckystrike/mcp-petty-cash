@@ -1,6 +1,6 @@
 {
   "name": "mcp-petty-cash",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "description": "MCP server for a petty cash book and voucher ledger: a cash float on the imprest system. A petty cash float on the imprest system, reconciled to the minor unit.",
   "settings": [
     {

@@ -573,7 +573,7 @@ server.registerTool("asset_delete", {
 });
 server.registerTool("asset_report", {
     title: "Report the register",
-    description: "For one year: net book value by category, scheme and currency at a date, the year's depreciation charge per currency, and every disposal with its gain or loss. Pro; asset_list and asset_schedule are free.",
+    description: "For one year: net book value by category, scheme and currency at as_of, the year's depreciation charge per currency, and every disposal with its gain or loss. Pro; asset_list and asset_schedule are free per-asset views.",
     inputSchema: {
         year: z.number().int().optional().describe("Calendar year to report, e.g. 2026. Default the year of as_of, else this year"),
         as_of: str("as_of", 10).optional().describe("Value the register at this month or date, YYYY-MM or YYYY-MM-DD. Default the last day of the year"),

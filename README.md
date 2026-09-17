@@ -43,6 +43,7 @@ Read-only mirror of [mcp-servers/servers/petty-cash](https://github.com/thelucky
 
 <!-- mirror-seo:end -->
 
+**In the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theluckystrike%2Fpetty-cash/versions/latest)** (`io.github.theluckystrike/petty-cash`).
 A petty cash float, kept the way the paperwork keeps it. Open a tin with an imprest amount and a custodian, record a voucher for every receipt that comes out of it, count the cash whenever you like, and get the difference to the minor unit along with the list of vouchers that count covers. When the tin runs low it works out the replenishment: what the cheque has to be to put the float back to its imprest, which vouchers it reimburses, the totals per category as an `expense_add`-ready payload, and the double entry in the cash book's own account names. Every amount is an integer number of minor units, no balance is ever stored, and nothing is posted anywhere: the payload is handed back for whoever owns the books.
 
 Built by theluckystrike.

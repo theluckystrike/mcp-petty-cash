@@ -1,5 +1,6 @@
 # mcp-asset-register
 
+**In the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theluckystrike%2Fasset-register/versions/latest)** (`io.github.theluckystrike/asset-register`).
 Keep a fixed asset register and depreciate it on the rates the tax authorities actually publish. You give it what you bought, what it cost, when it went into use and which category it falls in; it gives you the rate, the useful life, the convention, the full schedule year by year or month by month, the monthly journal entry, and the gain or loss when you sell it. Three tables ship with it: the Polish annual depreciation rates from the annex to the CIT and PIT acts keyed to the KST classification, the UK capital allowance pools with the annual investment allowance, and the US MACRS GDS half-year tables for 3, 5 and 7 year property. The tables are bundled files, not a live feed, so the same asset depreciated twice gives the same answer, and every rate carries its instrument, its source URL and the date it took effect. Nothing leaves your machine.
 
 Built by [theluckystrike](https://github.com/theluckystrike).

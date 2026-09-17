@@ -1,5 +1,6 @@
 # mcp-statement-of-account
 
+**In the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theluckystrike%2Fstatement-of-account/versions/latest)** (`io.github.theluckystrike/statement-of-account`).
 Send a client the one document that answers "what do I actually owe you". This MCP server
 reads the books you already keep in this suite -- your invoices, your credit notes and your
 deposits -- and turns them into a statement of account for a period: the balance you were
