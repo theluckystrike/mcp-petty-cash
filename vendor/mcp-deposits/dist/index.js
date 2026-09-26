@@ -205,7 +205,7 @@ function forClient(ref, list = getDeposits()) {
 }
 /* ------------------------------------------------------------------- server */
 const server = new McpServer({ name: "mcp-deposits", version: VERSION }, { capabilities: { tools: {}, resources: {}, prompts: {} } });
-server.registerTool("deposit_record", {
+server.registerTool("deposit_record", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Record a deposit received",
     description: "Record a security or retainer deposit received from a client, in minor units, with its currency, the date it arrived and the bank reference. Returns the DEP-YYYY-NNNN id.",
     inputSchema: {
@@ -286,7 +286,7 @@ server.registerTool("deposit_record", {
         return fail(e.message);
     }
 });
-server.registerTool("deposit_list", {
+server.registerTool("deposit_list", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "List deposits",
     description: "List deposits newest first: DEP number, client, kind, date, reference and what was received, applied, refunded and still held, with the same four totalled per currency. Filter by client, status, kind, date.",
     inputSchema: {
@@ -318,7 +318,7 @@ server.registerTool("deposit_list", {
         return fail(e.message);
     }
 });
-server.registerTool("deposit_apply", {
+server.registerTool("deposit_apply", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Apply a deposit to an invoice",
     description: "Apply part of a held deposit to one invoice: it records that amount as a PAYMENT through the invoice server. amount_minor defaults to the lesser of held and owed. More than either, or a pre-arrival date, is refused.",
     inputSchema: {
@@ -420,7 +420,7 @@ server.registerTool("deposit_apply", {
         return fail(e.message);
     }
 });
-server.registerTool("deposit_refund", {
+server.registerTool("deposit_refund", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Refund a deposit",
     description: "Give part or all of a held deposit back to the client, with the date and how it was sent. Refuses more than is still held. The invoice server is not touched: a refund is not a payment.",
     inputSchema: {
@@ -480,7 +480,7 @@ server.registerTool("deposit_refund", {
  *
  * Free on every tier: a tool that can only be reached by paying is not a way back.
  */
-server.registerTool("deposit_delete", {
+server.registerTool("deposit_delete", { annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false },
     title: "Delete a deposit recorded by mistake",
     description: "Delete a deposit that never moved money, freeing that month's free-tier slot. One with anything applied or refunded is refused, naming it, since a payment or refund would be left with nothing behind it.",
     inputSchema: {
@@ -517,7 +517,7 @@ server.registerTool("deposit_delete", {
         return fail(e.message);
     }
 });
-server.registerTool("deposit_balance", {
+server.registerTool("deposit_balance", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "What is held for a client",
     description: "Answer \"how much of theirs am I holding?\" for one client or everyone: received, applied to invoices, refunded and still held, one row per currency, never added across them. Reads only; deposit_list shows each deposit.",
     inputSchema: {
@@ -601,7 +601,7 @@ function statementFor(clientRef, currency) {
     const b = balances(picked.list)[0];
     return { client: picked.list[0].client, who, currency: picked.currency, deposits: picked.list, rows, balance: b };
 }
-server.registerTool("deposit_statement_text", {
+server.registerTool("deposit_statement_text", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "Plain-text deposit statement",
     description: "Turn one client's deposits into a plain-text statement to paste into an email: every movement in date order and the closing balance held. Pass currency when they have more than one. Free on every tier.",
     inputSchema: {
@@ -648,7 +648,7 @@ server.registerTool("deposit_statement_text", {
         return fail(e.message);
     }
 });
-server.registerTool("deposit_statement_pdf", {
+server.registerTool("deposit_statement_pdf", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "Render the deposit statement as a PDF",
     description: "Call this tool to write one client's A4 deposit statement and return the file path. Titled DEPOSIT STATEMENT, every movement in date order, closing with what is still held. Pro.",
     inputSchema: {
@@ -717,7 +717,7 @@ server.registerTool("deposit_statement_pdf", {
         return fail(e.message);
     }
 });
-server.registerTool("deposits_report", {
+server.registerTool("deposits_report", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "What is held, and for how long",
     description: "The deposit book at a date: held per currency, received, applied and refunded, the oldest holdings with days held, and every deposit older than N days with nothing applied. Pro; deposit_balance is free.",
     inputSchema: {

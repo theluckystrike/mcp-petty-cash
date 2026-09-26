@@ -1,9 +1,11 @@
 # mcp-statement-of-account
 
+[![theluckystrike/mcp-statement-of-account MCP server](https://glama.ai/mcp/servers/theluckystrike/mcp-statement-of-account/badges/score.svg)](https://glama.ai/mcp/servers/theluckystrike/mcp-statement-of-account)
+
 **In the [official MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.theluckystrike%2Fstatement-of-account/versions/latest)** (`io.github.theluckystrike/statement-of-account`).
 Send a client the one document that answers "what do I actually owe you". This MCP server
-reads the books you already keep in this suite -- your invoices, your credit notes and your
-deposits -- and turns them into a statement of account for a period: the balance you were
+reads the books you already keep in this suite, your invoices, your credit notes and your
+deposits, and turns them into a statement of account for a period: the balance you were
 carrying at the start, every invoice you issued, every payment that came in, every credit
 note you gave, and the balance at the end. It ages what is still open into 0-30, 31-60,
 61-90 and over 90 days past due, so you can see at a glance which client is the problem;
@@ -78,7 +80,7 @@ server exists for, and a free tier that hides it is a demo rather than a tool. T
 on the statement, the document that actually goes to a client, and it counts distinct
 statements: the same client, period and currency built again is free forever.
 
-[Get Pro](https://mcp.zovo.one/buy/statement-of-account) -- one-time, lifetime, for this
+[Get Pro](https://mcp.zovo.one/buy/statement-of-account), one-time, lifetime, for this
 server. Keys verify offline.
 
 ## Where the numbers come from
@@ -159,3 +161,9 @@ anywhere. There is no network call in this server at all. License keys verify of
 MIT. Support: support@zovo.one
 
 Built by [theluckystrike](https://github.com/theluckystrike).
+
+## Use these docs as an MCP server
+
+Any MCP client (Claude, Cursor, Windsurf, VS Code) can read this repository's documentation directly via GitMCP — no install:
+
+- Docs MCP URL: https://gitmcp.io/theluckystrike/mcp-statement-of-account

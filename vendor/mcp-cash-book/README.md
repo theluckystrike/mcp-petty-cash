@@ -77,3 +77,9 @@ So the bank import posts nothing here. It is matched to the posted cash movement
 All data stays on your machine. The ledger is derived on each call from the sibling servers' own data directories under `${XDG_DATA_HOME:-~/.local/share}/mcp-servers/`, and this server writes only its own `cash-book/periods.json` and `cash-book/closes.json`. There is no network call anywhere in `src`, and no telemetry. License keys are verified offline.
 
 Built by theluckystrike. https://github.com/theluckystrike
+
+## Use these docs as an MCP server
+
+Any MCP client (Claude, Cursor, Windsurf, VS Code) can read this repository's documentation directly via GitMCP — no install:
+
+- Docs MCP URL: https://gitmcp.io/theluckystrike/mcp-cash-book

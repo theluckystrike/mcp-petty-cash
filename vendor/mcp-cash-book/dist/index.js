@@ -198,7 +198,7 @@ const fromArg = str("from", 10).describe("First day of the period, YYYY-MM-DD");
 const toArg = str("to", 10).describe("Last day of the period, YYYY-MM-DD, inclusive");
 const currencyArg = z.string().regex(/^[A-Za-z]{3}$/, "currency must be a 3-letter ISO code such as EUR").optional()
     .describe("Needed when the period holds documents in more than one currency. Currencies are never added together");
-server.registerTool("ledger_build", {
+server.registerTool("ledger_build", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Build the ledger for a period",
     description: "Derive the double-entry ledger for one period in ONE currency from the invoice, credit note, deposit, expense, bank and asset stores, and register it. Nothing is written back. Free: 3 periods a month.",
     inputSchema: { from: fromArg, to: toArg, currency: currencyArg },
@@ -240,7 +240,7 @@ function dependentsOf(rec, closes) {
         .map((c) => `the month ${c.month} was closed on ${c.closed} in ${c.currency} and its trial balance snapshot ` +
         `(${c.debits_minor} minor units of debits over ${Object.keys(c.balances).length} accounts) covers days inside this period`);
 }
-server.registerTool("period_delete", {
+server.registerTool("period_delete", { annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false },
     title: "Delete a built period",
     description: "Delete one built period from the register and give its free-tier slot back. Refused when a closed month's snapshot covers the period, and that month is named. No sibling book is touched.",
     inputSchema: {
@@ -302,7 +302,7 @@ server.registerTool("period_delete", {
         return fail(e.message);
     }
 });
-server.registerTool("trial_balance", {
+server.registerTool("trial_balance", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Prove the ledger balances",
     description: "Total the debits and the credits for a period and prove they are equal to the minor unit. When they are not, name the entries whose own legs do not add up and the source document behind each. Free and unlimited.",
     inputSchema: { from: fromArg, to: toArg, currency: currencyArg },
@@ -339,7 +339,7 @@ server.registerTool("trial_balance", {
         return fail(e.message);
     }
 });
-server.registerTool("ledger_lines", {
+server.registerTool("ledger_lines", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "List ledger lines",
     description: "List the ledger lines for a period, filtered by account, source server, source_id or date; each carries its debit, credit and bank_ref, with the totals of the rows returned. Filtered totals do not balance. Free.",
     inputSchema: {
@@ -379,7 +379,7 @@ server.registerTool("ledger_lines", {
         return fail(e.message);
     }
 });
-server.registerTool("month_close", {
+server.registerTool("month_close", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Close a month",
     description: "List what a month leaves unposted or unbalanced, with its trial balance and bank reconciliation, then store the close as a snapshot; a later call names any drift against it. dry_run writes nothing. Pro.",
     inputSchema: {
@@ -444,7 +444,7 @@ server.registerTool("month_close", {
         return fail(e.message);
     }
 });
-server.registerTool("ledger_export_csv", {
+server.registerTool("ledger_export_csv", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "Export the ledger as CSV",
     description: "Return the period's ledger lines as RFC 4180 CSV, one row per leg including bank_ref. No file is written. Pro, but ledger_lines returns these same fields free and unlimited; this only lays them out as CSV columns.",
     inputSchema: {
@@ -463,7 +463,7 @@ server.registerTool("ledger_export_csv", {
         return fail(e.message);
     }
 });
-server.registerTool("ledger_report", {
+server.registerTool("ledger_report", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "Report movement and balance per account",
     description: "Report a built period account by account: debits, credits, movement and closing balance, plus purchase commitments held as memos and the period's exceptions. Pro; ledger_lines gives the lines free.",
     inputSchema: { from: fromArg, to: toArg, currency: currencyArg },

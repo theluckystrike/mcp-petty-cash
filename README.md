@@ -1,4 +1,4 @@
-# mcp-petty-cash
+# Track a petty cash float from Claude
 
 <!-- mirror-seo:start -->
 
@@ -106,11 +106,11 @@ claude mcp add petty-cash -- npx -y @theluckystrike/mcp-petty-cash
 
 The count is never metered. Whether the cash in the tin matches the paperwork is the question this server exists to answer, and a free tier that withholds the answer is a demo. What is metered is the volume of record keeping: a second float is a second tin, and twenty vouchers a month is a real one-tin office. `voucher_delete` is free for the same reason the cap is on records held: a voucher typed in twice would otherwise cost a slot with no way back but a key.
 
-**Get Pro:** https://mcp.zovo.one/buy/petty-cash -- $19 one-time for this server, or $39 for the bundle.
+Get Pro: https://mcp.zovo.one/buy/petty-cash, $19 one-time for this server, or $39 for the bundle.
 
 ## A measured insight
 
-**The cheque is not the sum of the vouchers, and the gap is invisible in the voucher trail.**
+The cheque is not the sum of the vouchers, and the gap is invisible in the voucher trail.
 
 The worked month in `test/unit.test.mjs`: a EUR 500.00 imprest, five vouchers totalling 20,194 minor units, so the paperwork says the tin holds 29,806 on the 31st. It holds 29,795. The count is short by exactly 11 minor units, eleven cents that no voucher explains and no receipt will ever be found for.
 
@@ -123,3 +123,19 @@ That is why `replenish_request` computes `imprest - balance` and never `sum(vouc
 All data stays local, in `${XDG_DATA_HOME:-~/.local/share}/mcp-servers/petty-cash/`. Three files: `floats.json`, `vouchers.json`, `counter.json`. Nothing is sent anywhere, there is no account, no API key and no network call in this server at all. License keys are verified offline. The journal and the `expense_add` payload are returned to you; this server posts nothing into any other store.
 
 Built by theluckystrike. https://github.com/theluckystrike
+
+## Frequently asked questions
+
+### Is there an MCP server for petty cash?
+
+Yes. The petty-cash server at mcp.zovo.one runs a petty cash float on the imprest system: vouchers, top-ups, per-category balances and reconciliation. Free tier, hosted endpoint, local-first storage.
+
+### How do I track petty cash from Claude?
+
+Connect https://mcp.zovo.one/mcp/petty-cash and say: 'Record a 15 EUR voucher for office supplies.' Replenishment and reconciliation are single prompts.
+
+## Use these docs as an MCP server
+
+Any MCP client (Claude, Cursor, Windsurf, VS Code) can read this repository's documentation directly via GitMCP — no install:
+
+- Docs MCP URL: https://gitmcp.io/theluckystrike/mcp-petty-cash

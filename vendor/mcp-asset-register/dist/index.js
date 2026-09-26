@@ -124,7 +124,7 @@ function lastChargeMonth(a) {
 }
 /* ------------------------------------------------------------------- server */
 const server = new McpServer({ name: "mcp-asset-register", version: VERSION }, { capabilities: { tools: {}, resources: {}, prompts: {} } });
-server.registerTool("asset_add", {
+server.registerTool("asset_add", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Add a fixed asset",
     description: "Add one fixed asset to the register and return its id with the rate, useful life and convention taken from the bundled tax table. Cost and residual are whole minor units. Free tier holds ten assets.",
     inputSchema: {
@@ -208,7 +208,7 @@ server.registerTool("asset_add", {
         return fail(e.message);
     }
 });
-server.registerTool("asset_list", {
+server.registerTool("asset_list", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "List the fixed asset register",
     description: "List the assets in the register with cost, method, rate and net book value at a date, filtered by scheme, category, project, currency or disposal state. Free and unlimited.",
     inputSchema: {
@@ -263,7 +263,7 @@ server.registerTool("asset_list", {
         return fail(e.message);
     }
 });
-server.registerTool("asset_schedule", {
+server.registerTool("asset_schedule", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Build a depreciation schedule",
     description: "Build the depreciation schedule for a stored asset, or price one not in the register, per year or per month, to residual or zero, with the table's rate, life and convention. Periods sum exactly to the base.",
     inputSchema: {
@@ -355,7 +355,7 @@ server.registerTool("asset_schedule", {
  * `expense_add` takes one currency per call and adding a PLN charge to a USD one would be
  * a made-up number.
  */
-server.registerTool("asset_journal", {
+server.registerTool("asset_journal", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Journal the month's depreciation",
     description: "Return the depreciation journal for one month: debit depreciation expense and credit accumulated depreciation, per asset and in total, plus an expense_add-ready payload per currency. It writes no expense. Pro.",
     inputSchema: {
@@ -460,7 +460,7 @@ server.registerTool("asset_journal", {
         return fail(e.message);
     }
 });
-server.registerTool("asset_dispose", {
+server.registerTool("asset_dispose", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
     title: "Dispose of an asset",
     description: "Record that an asset left the business on a date and return the gain or loss against net book value. proceeds_minor is in MINOR units. Depreciation stops here, and a second disposal is refused.",
     inputSchema: {
@@ -533,7 +533,7 @@ server.registerTool("asset_dispose", {
  * that meters a feature. So the delete is free, and it is narrow: it removes a row nothing
  * else has consumed yet, and it refuses the moment something has.
  */
-server.registerTool("asset_delete", {
+server.registerTool("asset_delete", { annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false },
     title: "Delete an asset",
     description: "Remove one asset from the register when nothing depends on it: not disposed of, never journaled. Its free-tier slot is free again. An asset with a dependent is refused and the dependent is named. Free.",
     inputSchema: {
@@ -571,7 +571,7 @@ server.registerTool("asset_delete", {
         return fail(e.message);
     }
 });
-server.registerTool("asset_report", {
+server.registerTool("asset_report", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     title: "Report the register",
     description: "For one year: net book value by category, scheme and currency at as_of, the year's depreciation charge per currency, and every disposal with its gain or loss. Pro; asset_list and asset_schedule are free per-asset views.",
     inputSchema: {

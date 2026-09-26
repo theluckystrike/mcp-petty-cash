@@ -8,10 +8,10 @@ Built by [theluckystrike](https://github.com/theluckystrike).
 ## Install
 
 
-**One-click (.mcpb):** download `asset-register.mcpb` from the latest release and double-click it in Claude Desktop:
+One-click (.mcpb): download `asset-register.mcpb` from the latest release and double-click it in Claude Desktop:
 https://github.com/theluckystrike/mcp-servers/releases/latest
 
-**Hosted, no install:** point a URL-based client at `https://mcp.zovo.one/mcp/asset-register`. `GET https://mcp.zovo.one/mcp/connect` mints a token and prints a ready URL.
+Hosted, no install: point a URL-based client at `https://mcp.zovo.one/mcp/asset-register`. `GET https://mcp.zovo.one/mcp/connect` mints a token and prints a ready URL.
 
 npm publish for `@theluckystrike/mcp-asset-register` is pending, so the `npx` line below returns 404 today.
 
@@ -98,7 +98,7 @@ No `vat_rate` is set on the payload. Depreciation is a book charge, not a purcha
 
 ## A measured insight
 
-**The yearly schedule is where you look for rounding errors, and the monthly journal is where they actually are.**
+The yearly schedule is where you look for rounding errors, and the monthly journal is where they actually are.
 
 Of the 67 schedules these three tables can produce for one test asset (cost 12,345.67, residual 45.67, in service 12 March 2026), the yearly rows come out clean under almost any rounding rule, because an annual amount is a percentage of a base and lands on or near a whole cent. Split those same years into months by rounding each month independently and **35 of the 67 no longer sum to the depreciable base**, off by up to **390 minor units, 3.90 on a 12,345.67 asset**. The worst offenders are the longest-lived rows: a residential building at 1.5 percent spreads its base over 800 months, and 800 half-cent roundings is where the 3.90 comes from.
 
@@ -111,3 +111,9 @@ Everything stays on your machine. Assets are JSON under `${XDG_DATA_HOME:-~/.loc
 ## License
 
 MIT. Support: support@zovo.one
+
+## Use these docs as an MCP server
+
+Any MCP client (Claude, Cursor, Windsurf, VS Code) can read this repository's documentation directly via GitMCP — no install:
+
+- Docs MCP URL: https://gitmcp.io/theluckystrike/mcp-asset-register

@@ -100,7 +100,7 @@ const server = new McpServer(
 
 const floatArg = str("float", MAX_NAME).optional().describe("The float id, e.g. FLOAT-2026-0001, or its name. Omit when there is only one");
 
-server.registerTool("float_open", {
+server.registerTool("float_open", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   title: "Open a petty cash float",
   description: "Open a petty cash float on the imprest system and return its id. The imprest is the cash the tin is topped back up to at every replenishment, in whole minor units. Free tier: one float.",
   inputSchema: {
@@ -156,7 +156,7 @@ server.registerTool("float_open", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("topup_record", {
+server.registerTool("topup_record", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   title: "Record cash put into the float",
   description: "Record cash put into the tin, in whole MINOR units, with the date and source, and return the new balance against the imprest. It also reimburses every voucher up to that date, as a replenishment does.",
   inputSchema: {
@@ -197,7 +197,7 @@ server.registerTool("topup_record", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("voucher_add", {
+server.registerTool("voucher_add", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   title: "Record a petty cash voucher",
   description: "Record one voucher paid out of the tin and return its VOU-YYYY-NNNN number. More than the float holds is refused, and so is a byte-identical duplicate. Free tier: 20 vouchers a calendar month.",
   inputSchema: {
@@ -279,7 +279,7 @@ server.registerTool("voucher_add", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("voucher_delete", {
+server.registerTool("voucher_delete", { annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: false },
   title: "Delete a voucher",
   description: "Delete a voucher entered wrongly, by its VOU number. One already covered by a reconciliation is refused, naming the count it would falsify: record a correcting voucher instead. Free.",
   inputSchema: {
@@ -315,7 +315,7 @@ server.registerTool("voucher_delete", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("reconcile", {
+server.registerTool("reconcile", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   title: "Count the tin and reconcile",
   description: "Count the tin: give the cash counted in whole MINOR units and the date, and get the expected balance, the difference, and every voucher since the last count, which this marks reconciled. Free.",
   inputSchema: {
@@ -369,7 +369,7 @@ server.registerTool("reconcile", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("replenish_request", {
+server.registerTool("replenish_request", { annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false },
   title: "Request a replenishment",
   description: "Work out what puts the float back to its imprest: the amount, the vouchers it reimburses, the totals per category as an expense_add-ready payload, and the double entry. Writes nothing. Pro.",
   inputSchema: {
@@ -433,7 +433,7 @@ server.registerTool("replenish_request", {
   } catch (e) { return fail((e as Error).message); }
 });
 
-server.registerTool("float_report", {
+server.registerTool("float_report", { annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
   title: "Report the state of the float",
   description: "Report each float: balance against imprest, what it takes to restore it, unreconciled vouchers with their total, the last count, and the history of what counts found over or short. Pro.",
   inputSchema: {
